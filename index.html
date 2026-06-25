@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>脱出ゲーム</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        :root {
+            --brand-dark-blue: #0A557A;  /* 深い青（藍色） */
+            --brand-orange: #E67E22;     /* オレンジ */
+            --brand-cyan: #00BFFF;       /* 明るい水色 */
+            --line-pink: #D81B60;
+            --line-orange: #FF8F00;
+            --line-cyan: #00E5FF;
+        }
+        /* 先端が三角（矢印）を再現するCSS */
+        .arrow-right {
+            clip-path: polygon(0% 0%, calc(100% - 14px) 0%, 100% 50%, calc(100% - 14px) 100%, 0% 100%);
+        }
+        .arrow-left {
+            clip-path: polygon(100% 0%, 14px 0%, 0% 50%, 14px 100%, 100% 100%);
+        }
+
+        /* 画面切り替え時のフェードイン */
+        .fade-in {
+            animation: fadeIn 0.25s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 min-h-screen flex flex-col justify-between font-sans select-none overflow-x-hidden m-0 p-0">
+
+    <header class="w-full m-0 p-0 flex flex-col">
+        <div class="bg-[var(--brand-dark-blue)] h-10 w-full m-0 p-0"></div>
+        <div class="w-full flex flex-col m-0 p-0 bg-white">
+            <div class="arrow-right bg-[var(--line-pink)] h-2.5 w-6/12 m-0 p-0"></div>
+            <div class="arrow-right bg-[var(--line-orange)] h-2.5 w-5/12 m-0 p-0"></div>
+            <div class="arrow-right bg-[var(--line-cyan)] h-2.5 w-4/12 m-0 p-0"></div>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-md mx-auto px-6 flex flex-col items-center justify-center py-6">
+        
+        <div id="screen-main" class="w-full flex flex-col items-center space-y-6 fade-in">
+            <div class="w-full flex justify-center">
+                <img id="main-logo-img" class="h-12 object-contain" src="" alt="イベントロゴ">
+            </div>
+            
+            <h1 class="text-4xl font-black tracking-widest text-black">脱出ゲーム</h1>
+            
+            <div class="w-full flex justify-center py-2">
+                <img id="main-char-img" class="h-52 object-contain" src="" alt="イメージキャラ">
+            </div>
+
+            <div class="w-full bg-[var(--brand-orange)] rounded-3xl p-5 shadow-md text-center">
+                <h2 class="text-black font-extrabold text-base mb-4 tracking-wide">集めたキーワード</h2>
+                <div class="flex justify-between gap-2 px-1">
+                    <button onclick="goToQuiz(1)" id="key-1" class="w-14 h-14 bg-white border-2 border-dashed border-black rounded-2xl flex flex-col items-center justify-center font-black text-lg text-black shadow-sm active:scale-95 transition">
+                        <span class="text-[10px] text-gray-400 font-normal leading-none mb-0.5">1</span>
+                        <span id="key-text-1">？</span>
+                    </button>
+                    <button onclick="goToQuiz(2)" id="key-2" class="w-14 h-14 bg-white border-2 border-dashed border-black rounded-2xl flex flex-col items-center justify-center font-black text-lg text-black shadow-sm active:scale-95 transition">
+                        <span class="text-[10px] text-gray-400 font-normal leading-none mb-0.5">2</span>
+                        <span id="key-text-2">？</span>
+                    </button>
+                    <button onclick="goToQuiz(3)" id="key-3" class="w-14 h-14 bg-white border-2 border-dashed border-black rounded-2xl flex flex-col items-center justify-center font-black text-lg text-black shadow-sm active:scale-95 transition">
+                        <span class="text-[10px] text-gray-400 font-normal leading-none mb-0.5">3</span>
+                        <span id="key-text-3">？</span>
+                    </button>
+                    <button onclick="goToQuiz(4)" id="key-4" class="w-14 h-14 bg-white border-2 border-dashed border-black rounded-2xl flex flex-col items-center justify-center font-black text-lg text-black shadow-sm active:scale-95 transition">
+                        <span class="text-[10px] text-gray-400 font-normal leading-none mb-0.5">4</span>
+                        <span id="key-text-4">？</span>
+                    </button>
+                    <button onclick="goToQuiz(5)" id="key-5" class="w-14 h-14 bg-white border-2 border-dashed border-black rounded-2xl flex flex-col items-center justify-center font-black text-lg text-black shadow-sm active:scale-95 transition">
+                        <span class="text-[10px] text-gray-400 font-normal leading-none mb-0.5">5</span>
+                        <span id="key-text-5">？</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-quiz" class="w-full hidden flex flex-col items-center space-y-4 fade-in">
+            <div class="w-full flex justify-between items-center">
+                <button onclick="backToMain()" class="text-sm font-bold text-gray-400 hover:text-gray-600">◀ もどる</button>
+                <img id="quiz-logo-img" class="h-8 object-contain" src="" alt="イベントロゴ">
+            </div>
+            <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2">脱出ゲーム</h1>
+            
+            <div class="w-full flex justify-center">
+                <img id="quiz-char-img" class="h-32 object-contain" src="" alt="イメージキャラ">
+            </div>
+
+            <div class="w-full bg-[var(--brand-dark-blue)] rounded-3xl p-5 shadow-lg flex flex-col items-center space-y-4">
+                <h2 id="quiz-title" class="text-white font-extrabold text-lg">第1問</h2>
+                
+                <div class="w-full bg-white rounded-2xl p-5 text-center min-h-[120px] flex items-center justify-center border-2 border-dashed border-pink-400">
+                    <p id="quiz-text" class="text-black font-bold text-md whitespace-pre-wrap">問題文</p>
+                </div>
+
+                <div id="quiz-input-zone" class="w-full space-y-3">
+                    <input type="text" id="answer-input" placeholder="こたえを入力してね" class="w-full p-3 bg-white text-black font-bold rounded-2xl text-center border-none shadow-inner focus:outline-none">
+                    <button onclick="checkAnswer()" class="w-full py-3 bg-[var(--brand-cyan)] text-white font-black text-lg rounded-2xl shadow-md active:scale-95 transition tracking-widest border-2 border-dashed border-cyan-300">
+                        回答する
+                    </button>
+                </div>
+                
+                <div id="quiz-solved-zone" class="w-full hidden text-center bg-emerald-500 text-white font-bold p-3 rounded-2xl">
+                    🎉 正解ずみ！キーワード：<span id="quiz-keyword-display" class="text-xl font-black ml-1"></span>
+                </div>
+                
+                <p id="error-msg" class="text-red-300 text-xs font-bold text-center hidden">※ちがうみたい…！もういちど考えてみてね。</p>
+            </div>
+        </div>
+
+        <div id="screen-clear" class="w-full hidden flex flex-col items-center space-y-6 text-center fade-in">
+            <div class="w-full flex justify-end">
+                <img id="clear-logo-img" class="h-8 object-contain" src="" alt="イベントロゴ">
+            </div>
+            <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2">脱出ゲーム</h1>
+            
+            <div class="w-full flex justify-center py-2">
+                <img id="clear-char-img" class="h-56 object-contain" src="" alt="イメージキャラ">
+            </div>
+
+            <div class="w-full py-5 bg-[var(--brand-cyan)] text-white font-black text-2xl rounded-3xl shadow-lg tracking-wider border-2 border-dashed border-cyan-300">
+                脱出おめでとう！
+            </div>
+
+            <div id="staff-zone" class="w-full bg-gray-50 border-2 border-gray-200 p-4 rounded-2xl mt-4">
+                <p class="text-xs text-gray-500 font-bold mb-2">【スタッフ確認用】確認コードを入力して景品をお渡し</p>
+                <div class="flex gap-2">
+                    <input type="password" id="staff-pass" placeholder="4桁のパスワード" class="w-full text-center p-2 border border-gray-300 rounded-xl text-sm bg-white">
+                    <button onclick="checkStaffPass()" class="bg-gray-800 text-white px-4 py-2 text-xs font-bold rounded-xl whitespace-nowrap">承認</button>
+                </div>
+            </div>
+            
+            <div id="end-message" class="hidden text-green-600 font-extrabold text-xl py-4 bg-green-50 border border-green-200 w-full rounded-2xl">
+                🎁 景品交換完了 🎁<br><span class="text-xs text-gray-500 font-normal">ありがとうございました！</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="w-full flex flex-col m-0 p-0 bg-white">
+        <div class="w-full flex flex-col m-0 p-0 items-end bg-white">
+            <div class="arrow-left bg-[var(--line-cyan)] h-2.5 w-4/12 m-0 p-0"></div>
+            <div class="arrow-left bg-[var(--line-orange)] h-2.5 w-5/12 m-0 p-0"></div>
+            <div class="arrow-left bg-[var(--line-pink)] h-2.5 w-6/12 m-0 p-0"></div>
+        </div>
+        <div class="bg-[var(--brand-dark-blue)] h-10 w-full m-0 p-0"></div>
+    </footer>
+
+    <script>
+        // ✍️ 【5つの問題・答え・キーワード・画像・ロゴを個別に設定する場所】
+        const quizData = {
+            1: { 
+                question: "「朝は4本足、昼は2本足、夜は3本足」これなーんだ？", 
+                answer: "にんげん", 
+                keyword: "み",
+                image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400", // 第1問のキャラ画像
+                logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200"    // 第1問のロゴ画像
+            },
+            2: { 
+                question: "上は洪水、下は大火事、これなーんだ？", 
+                answer: "おふろ", 
+                keyword: "ず",
+                image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400", // 第2問のキャラ画像
+                logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200"    // 第2問のロゴ画像
+            },
+            3: { 
+                question: "冷たくすると固まって、温めると消えちゃうものは？", 
+                answer: "こおり", 
+                keyword: "う",
+                image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400", // 第3問のキャラ画像
+                logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200"    // 第3問のロゴ画像
+            },
+            4: { 
+                question: "食べると安心するケーキはなーんだ？", 
+                answer: "ホットケーキ", 
+                keyword: "み",
+                image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400", // 第4問のキャラ画像
+                logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200"    // 第4問のロゴ画像
+            },
+            5: { 
+                question: "最後に残った問題！「1+1」の答えは？", 
+                answer: "2", 
+                keyword: "！",
+                image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400", // 第5問のキャラ画像
+                logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200"    // 第5問のロゴ画像
+            }
+        };
+
+        // ✍️ 【メイン画面・クリア画面の「画像」と「ロゴ」を変えたい場合はここ】
+        const MAIN_SCREEN_IMAGE = "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400";
+        const CLEAR_SCREEN_IMAGE = "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400";
+        
+        // 💡 追加：メインとクリアのロゴ画像のURL
+        const MAIN_SCREEN_LOGO = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200";
+        const CLEAR_SCREEN_LOGO = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200";
+
+        const STAFF_PASSWORD = "1234"; 
+        let activeQuizId = null;
+
+        window.onload = function() {
+            // 初期画像とロゴのセット
+            document.getElementById('main-char-img').src = MAIN_SCREEN_IMAGE;
+            document.getElementById('clear-char-img').src = CLEAR_SCREEN_IMAGE;
+            document.getElementById('main-logo-img').src = MAIN_SCREEN_LOGO;
+            document.getElementById('clear-logo-img').src = CLEAR_SCREEN_LOGO;
+
+            for (let i = 1; i <= 5; i++) {
+                if (localStorage.getItem(`solved_${i}`) === 'true') {
+                    applySolvedState(i, quizData[i].keyword);
+                }
+            }
+            if (localStorage.getItem('game_all_clear_staff') === 'true') {
+                showFinalEndState();
+            }
+            evaluateGameFlow();
+        };
+
+        function switchScreen(screenId) {
+            document.getElementById('screen-main').classList.add('hidden');
+            document.getElementById('screen-quiz').classList.add('hidden');
+            document.getElementById('screen-clear').classList.add('hidden');
+            document.getElementById(screenId).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function goToQuiz(id) {
+            activeQuizId = id;
+            document.getElementById('quiz-title').innerText = `第 ${id} 問`;
+            document.getElementById('quiz-text').innerText = quizData[id].question;
+            
+            // 問題ごとの「キャラ画像」と「ロゴ画像」をセット
+            document.getElementById('quiz-char-img').src = quizData[id].image;
+            document.getElementById('quiz-logo-img').src = quizData[id].logo;
+            
+            document.getElementById('answer-input').value = "";
+            document.getElementById('error-msg').classList.add('hidden');
+
+            if (localStorage.getItem(`solved_${id}`) === 'true') {
+                document.getElementById('quiz-input-zone').classList.add('hidden');
+                document.getElementById('quiz-solved-zone').classList.remove('hidden');
+                document.getElementById('quiz-keyword-display').innerText = quizData[id].keyword;
+            } else {
+                document.getElementById('quiz-input-zone').classList.remove('hidden');
+                document.getElementById('quiz-solved-zone').classList.add('hidden');
+            }
+            switchScreen('screen-quiz');
+        }
+
+        function backToMain() {
+            evaluateGameFlow();
+        }
+
+        function checkAnswer() {
+            const userInput = document.getElementById('answer-input').value.trim();
+            const correct = quizData[activeQuizId].answer;
+
+            if (userInput === correct) {
+                localStorage.setItem(`solved_${activeQuizId}`, 'true');
+                applySolvedState(activeQuizId, quizData[activeQuizId].keyword);
+                document.getElementById('error-msg').classList.add('hidden');
+                alert(`正解！キーワード「 ${quizData[activeQuizId].keyword} 」をゲット！`);
+                evaluateGameFlow();
+            } else {
+                document.getElementById('error-msg').classList.remove('hidden');
+            }
+        }
+
+        function applySolvedState(id, keyword) {
+            const txtSpan = document.getElementById(`key-text-${id}`);
+            if(txtSpan) txtSpan.innerText = keyword;
+            const btn = document.getElementById(`key-${id}`);
+            if(btn) {
+                btn.classList.remove('bg-white', 'border-dashed');
+                btn.classList.add('bg-amber-400', 'border-solid', 'text-white');
+            }
+        }
+
+        function evaluateGameFlow() {
+            let totalSolved = 0;
+            for (let i = 1; i <= 5; i++) {
+                if (localStorage.getItem(`solved_${i}`) === 'true') totalSolved++;
+            }
+            if (totalSolved === 5) {
+                switchScreen('screen-clear');
+            } else {
+                switchScreen('screen-main');
+            }
+        }
+
+        function checkStaffPass() {
+            const pass = document.getElementById('staff-pass').value;
+            if (pass === STAFF_PASSWORD) {
+                localStorage.setItem('game_all_clear_staff', 'true');
+                showFinalEndState();
+            } else {
+                alert('パスコードが違います');
+            }
+        }
+
+        function showFinalEndState() {
+            document.getElementById('staff-zone').classList.add('hidden');
+            document.getElementById('end-message').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

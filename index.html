@@ -156,51 +156,50 @@
 
     <script>
         // ✍️ 【5つの問題・答え・キーワード・画像・ロゴを個別に設定する場所】
-        // ※画像ファイル名が違う場合は、ここを実際のファイル名（例: "chara1.png"）に変更してください。
         const quizData = {
             1: {
                 question: "ペンタブレットで書いてみよう！",
                 answer: "きーわーど",
                 keyword: "お",
-                image: "onocul-logo.png", // 第1問のキャラ画像ファイル名
-                logo: "onocul-logo.png"    // 第1問のロゴ画像ファイル名
+                image: "onocul-logo.png",
+                logo: "onocul-logo.png"
             },
             2: {
                 question: "缶バッジを作ってみよう！",
                 answer: "きーわーど",
                 keyword: "の",
-                image: "onocul-logo.png", // 第2問のキャラ画像ファイル名
-                logo: "onocul-logo.png"    // 第2問のロゴ画像ファイル名
+                image: "onocul-logo.png",
+                logo: "onocul-logo.png"
             },
             3: {
                 question: "VRを体験してみよう！",
                 answer: "きーわーど",
                 keyword: "か",
-                image: "onocul-logo.png", // 第3問のキャラ画像ファイル名
-                logo: "onocul-logo.png"    // 第3問のロゴ画像ファイル名
+                image: "onocul-logo.png",
+                logo: "onocul-logo.png"
             },
             4: {
                 question: "Vtuberとお話してみよう！",
                 answer: "きーわーど",
                 keyword: "る",
-                image: "onocul-logo.png", // 第4問のキャラ画像ファイル名
-                logo: "onocul-logo.png"    // 第4問のロゴ画像ファイル名
+                image: "onocul-logo.png",
+                logo: "onocul-logo.png"
             },
             5: {
                 question: "最後はステージ発表にて！",
                 answer: "きーわーど",
                 keyword: "！",
-                image: "onocul-logo.png", // 第5問のキャラ画像ファイル名
-                logo: "onocul-logo.png"    // 第5問のロゴ画像ファイル名
+                image: "onocul-logo.png",
+                logo: "onocul-logo.png"
             }
         };
 
-        // ✍️ 【メイン画面・クリア画面の「画像」と「ロゴ」のファイル名】
-        const MAIN_SCREEN_IMAGE  = "onocul-logo.png"; // メイン画面のキャラ画像ファイル名
-        const CLEAR_SCREEN_IMAGE = "onocul-logo.png"; // クリア画面のキャラ画像ファイル名
+        // ✍️ 【メイン画面・クリア画面の「画像」と「ロゴ」のファイル名設定】
+        const MAIN_SCREEN_IMAGE  = "main-chara1.PNG"; // ★メイン画面の中央キャラを新しい画像に変更しました！
+        const CLEAR_SCREEN_IMAGE = "onocul-logo.png";
         
-        const MAIN_SCREEN_LOGO   = "onocul-logo.png"; // メイン画面のロゴ画像ファイル名
-        const CLEAR_SCREEN_LOGO  = "onocul-logo.png"; // クリア画面のロゴ画像ファイル名
+        const MAIN_SCREEN_LOGO   = "onocul-logo.png"; // ★上部のロゴは元のままキープしています
+        const CLEAR_SCREEN_LOGO  = "onocul-logo.png";
 
         const STAFF_PASSWORD = "1234";
         let activeQuizId = null;

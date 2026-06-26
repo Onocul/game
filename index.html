@@ -47,7 +47,7 @@
         
         <div id="screen-main" class="w-full flex flex-col items-center space-y-6 fade-in">
             <div class="w-full flex justify-center">
-                <img id="onocul-logo.png" class="h-12 object-contain" src="" alt="イベントロゴ">
+                <img id="main-logo-img" class="h-12 object-contain" src="" alt="イベントロゴ">
             </div>
             
             <h1 class="text-4xl font-black tracking-widest text-black">脱出ゲーム</h1>
@@ -86,7 +86,7 @@
         <div id="screen-quiz" class="w-full hidden flex flex-col items-center space-y-4 fade-in">
             <div class="w-full flex justify-between items-center">
                 <button onclick="backToMain()" class="text-sm font-bold text-gray-400 hover:text-gray-600">◀ もどる</button>
-                <img id="onocul-logo.png" class="h-8 object-contain" src="" alt="イベントロゴ">
+                <img id="quiz-logo-img" class="h-8 object-contain" src="" alt="イベントロゴ">
             </div>
             <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2">脱出ゲーム</h1>
             
@@ -118,7 +118,7 @@
 
         <div id="screen-clear" class="w-full hidden flex flex-col items-center space-y-6 text-center fade-in">
             <div class="w-full flex justify-end">
-                <img id="onocul-logo.png" class="h-8 object-contain" src="" alt="イベントロゴ">
+                <img id="clear-logo-img" class="h-8 object-contain" src="" alt="イベントロゴ">
             </div>
             <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2">脱出ゲーム</h1>
             
@@ -162,45 +162,45 @@
                 answer: "にんげん", 
                 keyword: "み",
                 image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400", // 第1問のキャラ画像
-                logo: "https://github.com/Onocul/game/blob/main/onocul-logo.png"    // 第1問のロゴ画像
+                logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200"    // 第1問のロゴ画像
             },
             2: { 
                 question: "上は洪水、下は大火事、これなーんだ？", 
                 answer: "おふろ", 
                 keyword: "ず",
                 image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400", // 第2問のキャラ画像
-                logo: "https://github.com/Onocul/game/blob/main/onocul-logo.png"    // 第2問のロゴ画像
+                logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200"    // 第2問のロゴ画像
             },
             3: { 
                 question: "冷たくすると固まって、温めると消えちゃうものは？", 
                 answer: "こおり", 
                 keyword: "う",
                 image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400", // 第3問のキャラ画像
-                logo: "https://github.com/Onocul/game/blob/main/onocul-logo.png"    // 第3問のロゴ画像
+                logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200"    // 第3問のロゴ画像
             },
             4: { 
                 question: "食べると安心するケーキはなーんだ？", 
                 answer: "ホットケーキ", 
                 keyword: "み",
                 image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400", // 第4問のキャラ画像
-                logo: "https://github.com/Onocul/game/blob/main/onocul-logo.png"    // 第4問のロゴ画像
+                logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200"    // 第4問のロゴ画像
             },
             5: { 
                 question: "最後に残った問題！「1+1」の答えは？", 
                 answer: "2", 
                 keyword: "！",
                 image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400", // 第5問のキャラ画像
-                logo: "https://github.com/Onocul/game/blob/main/onocul-logo.png"    // 第5問のロゴ画像
+                logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200"    // 第5問のロゴ画像
             }
         };
 
         // ✍️ 【メイン画面・クリア画面の「画像」と「ロゴ」を変えたい場合はここ】
-        const MAIN_SCREEN_IMAGE = "https://github.com/Onocul/game/blob/main/onocul-logo.png";
-        const CLEAR_SCREEN_IMAGE = "https://github.com/Onocul/game/blob/main/onocul-logo.png";
+        const MAIN_SCREEN_IMAGE = "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400";
+        const CLEAR_SCREEN_IMAGE = "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=400";
         
         // 💡 追加：メインとクリアのロゴ画像のURL
-        const MAIN_SCREEN_LOGO = "https://github.com/Onocul/game/blob/main/onocul-logo.png";
-        const CLEAR_SCREEN_LOGO = "https://github.com/Onocul/game/blob/main/onocul-logo.png";
+        const MAIN_SCREEN_LOGO = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200";
+        const CLEAR_SCREEN_LOGO = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=200";
 
         const STAFF_PASSWORD = "1234"; 
         let activeQuizId = null;
@@ -209,8 +209,8 @@
             // 初期画像とロゴのセット
             document.getElementById('main-char-img').src = MAIN_SCREEN_IMAGE;
             document.getElementById('clear-char-img').src = CLEAR_SCREEN_IMAGE;
-            document.getElementById('onocul-logo.png').src = MAIN_SCREEN_LOGO;
-            document.getElementById('onocul-logo.png').src = CLEAR_SCREEN_LOGO;
+            document.getElementById('main-logo-img').src = MAIN_SCREEN_LOGO;
+            document.getElementById('clear-logo-img').src = CLEAR_SCREEN_LOGO;
 
             for (let i = 1; i <= 5; i++) {
                 if (localStorage.getItem(`solved_${i}`) === 'true') {
@@ -238,7 +238,7 @@
             
             // 問題ごとの「キャラ画像」と「ロゴ画像」をセット
             document.getElementById('quiz-char-img').src = quizData[id].image;
-            document.getElementById('onocul-logo.png').src = quizData[id].logo;
+            document.getElementById('quiz-logo-img').src = quizData[id].logo;
             
             document.getElementById('answer-input').value = "";
             document.getElementById('error-msg').classList.add('hidden');

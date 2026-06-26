@@ -50,7 +50,7 @@
                 <img id="onocul-logo" class="h-12 object-contain" src="" alt="イベントロゴ">
             </div>
             
-            <h1 class="text-4xl font-black tracking-widest text-black">脱出ゲーム</h1>
+            <h1 class="text-4xl font-black tracking-widest text-black">謎解きゲーム</h1>
             
             <div class="w-full flex justify-center py-2">
                 <img id="main-char-img" class="h-52 object-contain" src="" alt="イメージキャラ">
@@ -86,9 +86,9 @@
         <div id="screen-quiz" class="w-full hidden flex flex-col items-center space-y-4 fade-in">
             <div class="w-full flex justify-between items-center">
                 <button onclick="backToMain()" class="text-sm font-bold text-gray-400 hover:text-gray-600">◀ もどる</button>
-                <img id="onocul-logo.png" class="h-8 object-contain" src="" alt="イベントロゴ">
+                <img id="onocul-logo" class="h-8 object-contain" src="" alt="イベントロゴ">
             </div>
-            <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2">脱出ゲーム</h1>
+            <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2">謎解きゲーム</h1>
             
             <div class="w-full flex justify-center">
                 <img id="quiz-char-img" class="h-32 object-contain" src="" alt="イメージキャラ">
@@ -118,9 +118,9 @@
 
         <div id="screen-clear" class="w-full hidden flex flex-col items-center space-y-6 text-center fade-in">
             <div class="w-full flex justify-end">
-                <img id="onocul-logo.png" class="h-8 object-contain" src="" alt="イベントロゴ">
+                <img id="onocul-logo" class="h-8 object-contain" src="" alt="イベントロゴ">
             </div>
-            <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2">脱出ゲーム</h1>
+            <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2">謎解きゲーム</h1>
             
             <div class="w-full flex justify-center py-2">
                 <img id="clear-char-img" class="h-56 object-contain" src="" alt="イメージキャラ">
@@ -209,8 +209,8 @@
             // 初期画像とロゴのセット
             document.getElementById('main-char-img').src = MAIN_SCREEN_IMAGE;
             document.getElementById('clear-char-img').src = CLEAR_SCREEN_IMAGE;
-            document.getElementById('onocul-logo.png').src = MAIN_SCREEN_LOGO;
-            document.getElementById('onocul-logo.png').src = CLEAR_SCREEN_LOGO;
+            document.getElementById('onocul-logo').src = MAIN_SCREEN_LOGO;
+            document.getElementById('onocul-logo').src = CLEAR_SCREEN_LOGO;
 
             for (let i = 1; i <= 5; i++) {
                 if (localStorage.getItem(`solved_${i}`) === 'true') {
@@ -237,8 +237,8 @@
             document.getElementById('quiz-text').innerText = quizData[id].question;
             
             // 問題ごとの「キャラ画像」と「ロゴ画像」をセット
-            document.getElementById('onocul-logo.png').src = quizData[id].image;
-            document.getElementById('onocul-logo.png').src = quizData[id].logo;
+            document.getElementById('onocul-logo').src = quizData[id].image;
+            document.getElementById('onocul-logo').src = quizData[id].logo;
             
             document.getElementById('answer-input').value = "";
             document.getElementById('error-msg').classList.add('hidden');

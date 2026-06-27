@@ -86,19 +86,19 @@
 
         <!-- クイズ画面 -->
         <div id="screen-quiz" class="w-full hidden flex flex-col items-center fade-in">
-            <!-- もどるボタンとロゴ（謎解きゲームのテキストは削除しました） -->
-            <div class="w-full flex justify-between items-center mb-6">
+            <!-- もどるボタンとロゴ -->
+            <div class="w-full flex justify-between items-center mb-4">
                 <button onclick="backToMain()" class="text-sm font-bold text-gray-400 hover:text-gray-600">◀ もどる</button>
                 <img id="quiz-logo" class="h-8 object-contain" src="" alt="イベントロゴ">
             </div>
             
-            <!-- 【調整箇所】786×592の画像が綺麗に収まり、下半分が青ボックスに被るように設定 -->
-            <div class="w-full flex justify-center z-10 relative -mb-6 px-4">
-                <img id="quiz-char-img" class="w-[85%] max-w-[340px] h-auto object-contain" src="" alt="イメージキャラ">
+            <!-- 【調整箇所】マイナスマージンをなくし、画像の下辺とボックスの上辺がピッタリくっつくようにしました（重なりません） -->
+            <div class="w-full flex justify-center px-4 mb-2">
+                <img id="quiz-char-img" class="w-[90%] max-w-[360px] h-auto object-contain" src="" alt="イメージキャラ">
             </div>
 
-            <!-- クイズボックス本体 -->
-            <div class="w-full bg-[var(--brand-dark-blue)] rounded-3xl p-5 pt-10 shadow-lg flex flex-col items-center space-y-4 z-0 relative">
+            <!-- クイズボックス本体（隙間が出ないよう、通常のパディングにリセット） -->
+            <div class="w-full bg-[var(--brand-dark-blue)] rounded-3xl p-5 shadow-lg flex flex-col items-center space-y-4">
                 <h2 id="quiz-title" class="text-white font-extrabold text-lg">第1問</h2>
                 
                 <div class="w-full bg-white rounded-2xl p-5 text-center min-h-[120px] flex items-center justify-center border-2 border-dashed border-pink-400">
@@ -160,7 +160,7 @@
     </footer>
 
     <script>
-        // ✍️ 【5つの問題・答え・キーワード・画像・ロゴを個別に設定する場所】
+        // ✍️ 【5つの問題・答え・キーワード・画像・ロゴを設定する場所】
         const quizData = {
             1: {
                 question: "ペンタブレットで書いてみよう！",

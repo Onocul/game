@@ -85,19 +85,20 @@
         </div>
 
         <!-- クイズ画面 -->
-        <div id="screen-quiz" class="w-full hidden flex flex-col items-center space-y-4 fade-in">
-            <div class="w-full flex justify-between items-center">
+        <div id="screen-quiz" class="w-full hidden flex flex-col items-center fade-in">
+            <div class="w-full flex justify-between items-center mb-2">
                 <button onclick="backToMain()" class="text-sm font-bold text-gray-400 hover:text-gray-600">◀ もどる</button>
                 <img id="quiz-logo" class="h-8 object-contain" src="" alt="イベントロゴ">
             </div>
-            <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2">謎解きゲーム</h1>
+            <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2 mb-4">謎解きゲーム</h1>
             
-            <div class="w-full flex justify-center">
-                <!-- ここに問題ごとのキャラクター画像が表示されます -->
-                <img id="quiz-char-img" class="h-32 object-contain" src="" alt="イメージキャラ">
+            <!-- キャラクター画像エリア：1000002966.png のように少し下のボックスに重なるようマージンを微調整しています -->
+            <div class="w-full flex justify-center z-10 -mb-5">
+                <img id="quiz-char-img" class="h-36 object-contain" src="" alt="イメージキャラ">
             </div>
 
-            <div class="w-full bg-[var(--brand-dark-blue)] rounded-3xl p-5 shadow-lg flex flex-col items-center space-y-4">
+            <!-- クイズボックス本体 -->
+            <div class="w-full bg-[var(--brand-dark-blue)] rounded-3xl p-5 pt-8 shadow-lg flex flex-col items-center space-y-4 z-0">
                 <h2 id="quiz-title" class="text-white font-extrabold text-lg">第1問</h2>
                 
                 <div class="w-full bg-white rounded-2xl p-5 text-center min-h-[120px] flex items-center justify-center border-2 border-dashed border-pink-400">
@@ -165,35 +166,35 @@
                 question: "ペンタブレットで書いてみよう！",
                 answer: "きーわーど",
                 keyword: "お",
-                image: "quiz-chara1.PNG", // ★ 1問目のキャラクター画像を修正しました！
-                logo: "onocul-logo.png"   // 上のロゴはそのままキープ
+                image: "quiz-chara1.PNG", // ★ 第1問のキャラクター画像
+                logo: "onocul-logo.png"
             },
             2: {
                 question: "缶バッジを作ってみよう！",
                 answer: "きーわーど",
                 keyword: "の",
-                image: "onocul-logo.png", // 必要に応じて「quiz-chara2.PNG」などに変更してください
+                image: "quiz-chara2.PNG", // ★ 第2問のキャラクター画像に設定しました！
                 logo: "onocul-logo.png"
             },
             3: {
                 question: "VRを体験してみよう！",
-                answer: "き--わーど",
+                answer: "きーわーど",
                 keyword: "か",
-                image: "onocul-logo.png",
+                image: "quiz-chara3.PNG", // ★ 第3問のキャラクター画像に設定しました！
                 logo: "onocul-logo.png"
             },
             4: {
                 question: "Vtuberとお話してみよう！",
                 answer: "きーわーど",
                 keyword: "る",
-                image: "onocul-logo.png",
+                image: "quiz-chara4.PNG", // ★ 第4問のキャラクター画像に設定しました！
                 logo: "onocul-logo.png"
             },
             5: {
                 question: "最後はステージ発表にて！",
                 answer: "きーわーど",
                 keyword: "！",
-                image: "onocul-logo.png",
+                image: "quiz-chara5.PNG", // ★ 第5問のキャラクター画像に設定しました！
                 logo: "onocul-logo.png"
             }
         };

@@ -45,6 +45,7 @@
 
     <main class="flex-grow w-full max-w-md mx-auto px-6 flex flex-col items-center justify-center py-6">
         
+        <!-- メイン画面 -->
         <div id="screen-main" class="w-full flex flex-col items-center space-y-6 fade-in">
             <div class="w-full flex justify-center">
                 <img id="main-logo" class="h-12 object-contain" src="" alt="イベントロゴ">
@@ -83,6 +84,7 @@
             </div>
         </div>
 
+        <!-- クイズ画面 -->
         <div id="screen-quiz" class="w-full hidden flex flex-col items-center space-y-4 fade-in">
             <div class="w-full flex justify-between items-center">
                 <button onclick="backToMain()" class="text-sm font-bold text-gray-400 hover:text-gray-600">◀ もどる</button>
@@ -91,6 +93,7 @@
             <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2">謎解きゲーム</h1>
             
             <div class="w-full flex justify-center">
+                <!-- ここに問題ごとのキャラクター画像が表示されます -->
                 <img id="quiz-char-img" class="h-32 object-contain" src="" alt="イメージキャラ">
             </div>
 
@@ -116,6 +119,7 @@
             </div>
         </div>
 
+        <!-- クリア画面 -->
         <div id="screen-clear" class="w-full hidden flex flex-col items-center space-y-6 text-center fade-in">
             <div class="w-full flex justify-end">
                 <img id="clear-logo" class="h-8 object-contain" src="" alt="イベントロゴ">
@@ -161,19 +165,19 @@
                 question: "ペンタブレットで書いてみよう！",
                 answer: "きーわーど",
                 keyword: "お",
-                image: "onocul-logo.png",
-                logo: "onocul-logo.png"
+                image: "quiz-chara1.PNG", // ★ 1問目のキャラクター画像を修正しました！
+                logo: "onocul-logo.png"   // 上のロゴはそのままキープ
             },
             2: {
                 question: "缶バッジを作ってみよう！",
                 answer: "きーわーど",
                 keyword: "の",
-                image: "onocul-logo.png",
+                image: "onocul-logo.png", // 必要に応じて「quiz-chara2.PNG」などに変更してください
                 logo: "onocul-logo.png"
             },
             3: {
                 question: "VRを体験してみよう！",
-                answer: "きーわーど",
+                answer: "き--わーど",
                 keyword: "か",
                 image: "onocul-logo.png",
                 logo: "onocul-logo.png"
@@ -195,10 +199,10 @@
         };
 
         // ✍️ 【メイン画面・クリア画面の「画像」と「ロゴ」のファイル名設定】
-        const MAIN_SCREEN_IMAGE  = "main-chara1.PNG"; // ★メイン画面の中央キャラを新しい画像に変更しました！
+        const MAIN_SCREEN_IMAGE  = "main-chara1.PNG"; 
         const CLEAR_SCREEN_IMAGE = "onocul-logo.png";
         
-        const MAIN_SCREEN_LOGO   = "onocul-logo.png"; // ★上部のロゴは元のままキープしています
+        const MAIN_SCREEN_LOGO   = "onocul-logo.png"; 
         const CLEAR_SCREEN_LOGO  = "onocul-logo.png";
 
         const STAFF_PASSWORD = "1234";

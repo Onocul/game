@@ -90,15 +90,15 @@
                 <button onclick="backToMain()" class="text-sm font-bold text-gray-400 hover:text-gray-600">◀ もどる</button>
                 <img id="quiz-logo" class="h-8 object-contain" src="" alt="イベントロゴ">
             </div>
-            <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2 mb-4">謎解きゲーム</h1>
+            <h1 class="text-xl font-bold tracking-wider text-black text-right w-full pr-2 mb-2">謎解きゲーム</h1>
             
-            <!-- キャラクター画像エリア：1000002966.png のように少し下のボックスに重なるようマージンを微調整しています -->
-            <div class="w-full flex justify-center z-10 -mb-5">
-                <img id="quiz-char-img" class="h-36 object-contain" src="" alt="イメージキャラ">
+            <!-- 【調整箇所】画像のサイズを少し大きく（h-44）し、下へのめり込みを深く（-mb-8）しました -->
+            <div class="w-full flex justify-center z-10 -mb-8">
+                <img id="quiz-char-img" class="h-44 object-contain" src="" alt="イメージキャラ">
             </div>
 
             <!-- クイズボックス本体 -->
-            <div class="w-full bg-[var(--brand-dark-blue)] rounded-3xl p-5 pt-8 shadow-lg flex flex-col items-center space-y-4 z-0">
+            <div class="w-full bg-[var(--brand-dark-blue)] rounded-3xl p-5 pt-10 shadow-lg flex flex-col items-center space-y-4 z-0">
                 <h2 id="quiz-title" class="text-white font-extrabold text-lg">第1問</h2>
                 
                 <div class="w-full bg-white rounded-2xl p-5 text-center min-h-[120px] flex items-center justify-center border-2 border-dashed border-pink-400">
@@ -166,40 +166,39 @@
                 question: "ペンタブレットで書いてみよう！",
                 answer: "きーわーど",
                 keyword: "お",
-                image: "quiz-chara1.PNG", // ★ 第1問のキャラクター画像
+                image: "quiz-chara1.PNG",
                 logo: "onocul-logo.png"
             },
             2: {
                 question: "缶バッジを作ってみよう！",
                 answer: "きーわーど",
                 keyword: "の",
-                image: "quiz-chara2.PNG", // ★ 第2問のキャラクター画像に設定しました！
+                image: "quiz-chara2.PNG",
                 logo: "onocul-logo.png"
             },
             3: {
                 question: "VRを体験してみよう！",
                 answer: "きーわーど",
                 keyword: "か",
-                image: "quiz-chara3.PNG", // ★ 第3問のキャラクター画像に設定しました！
+                image: "quiz-chara3.PNG",
                 logo: "onocul-logo.png"
             },
             4: {
                 question: "Vtuberとお話してみよう！",
                 answer: "きーわーど",
                 keyword: "る",
-                image: "quiz-chara4.PNG", // ★ 第4問のキャラクター画像に設定しました！
+                image: "quiz-chara4.PNG",
                 logo: "onocul-logo.png"
             },
             5: {
                 question: "最後はステージ発表にて！",
                 answer: "きーわーど",
                 keyword: "！",
-                image: "quiz-chara5.PNG", // ★ 第5問のキャラクター画像に設定しました！
+                image: "quiz-chara5.PNG",
                 logo: "onocul-logo.png"
             }
         };
 
-        // ✍️ 【メイン画面・クリア画面の「画像」と「ロゴ」のファイル名設定】
         const MAIN_SCREEN_IMAGE  = "main-chara1.PNG"; 
         const CLEAR_SCREEN_IMAGE = "onocul-logo.png";
         
@@ -210,7 +209,6 @@
         let activeQuizId = null;
 
         window.onload = function() {
-            // 初期画像とロゴのセット
             if(document.getElementById('main-char-img'))  document.getElementById('main-char-img').src = MAIN_SCREEN_IMAGE;
             if(document.getElementById('clear-char-img')) document.getElementById('clear-char-img').src = CLEAR_SCREEN_IMAGE;
             if(document.getElementById('main-logo'))       document.getElementById('main-logo').src = MAIN_SCREEN_LOGO;
@@ -240,7 +238,6 @@
             document.getElementById('quiz-title').innerText = `第 ${id} 問`;
             document.getElementById('quiz-text').innerText = quizData[id].question;
             
-            // 問題ごとの「キャラ画像」と「ロゴ画像」をセット
             if(document.getElementById('quiz-char-img')) document.getElementById('quiz-char-img').src = quizData[id].image;
             if(document.getElementById('quiz-logo'))     document.getElementById('quiz-logo').src = quizData[id].logo;
             
@@ -262,7 +259,6 @@
             evaluateGameFlow();
         }
 
-        /* 解答チェック */
         function checkAnswer() {
             const userInput = document.getElementById('answer-input').value.trim();
             const correct = quizData[activeQuizId].answer;
